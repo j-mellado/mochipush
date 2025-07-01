@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/01 19:01:06 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/01 19:01:07 by jmellado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
 static void	swap(t_stack_node **head) //Define una función que intercambia las posiciones del nodo superior y segundo nodo de una pila

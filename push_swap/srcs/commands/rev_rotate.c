@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rev_rotate.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/01 19:00:52 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/01 19:00:53 by jmellado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
 static void	rev_rotate(t_stack_node **stack) //Define una función que rota el nodo del fondo de una pila, a la cima

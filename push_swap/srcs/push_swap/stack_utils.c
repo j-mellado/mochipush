@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/01 19:01:29 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/01 19:01:30 by jmellado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
 int	stack_len(t_stack_node *stack) //Define una función que calcula y retorna la longitud de una pila
 {
 	int	count; //Para almacenar el conteo de nodos
 
-	if (!stack) 
+	if (!stack)
 		return (0);
 	count = 0;
 	while (stack) //Hace bucle hasta que se alcance el final de la pila

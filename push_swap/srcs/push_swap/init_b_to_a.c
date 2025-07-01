@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_b_to_a.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/01 19:01:17 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/01 19:01:18 by jmellado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
 static void	set_target_b(t_stack_node *a, t_stack_node *b) //Define una función que establece para el nodo `a` actual, su nodo objetivo de la pila `a`
@@ -12,7 +24,7 @@ static void	set_target_b(t_stack_node *a, t_stack_node *b) //Define una función
 		current_a = a; //Asigna el puntero para que apunte al nodo `a` actual
 		while (current_a) //Mientras el puntero no esté establecido a NULL
 		{
-			if (current_a->nbr > b->nbr 
+			if (current_a->nbr > b->nbr
 				&& current_a->nbr < best_match_index) //Verifica si el valor del nodo `a` es mayor que el nodo `b`, && menor que el "más grande más cercano" hasta ahora
 			{
 				best_match_index = current_a->nbr; //Establece la mejor coincidencia como el valor en el nodo `a` actual

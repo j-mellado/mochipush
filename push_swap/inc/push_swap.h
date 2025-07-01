@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/01 19:13:13 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/01 19:13:14 by jmellado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -19,7 +31,7 @@ typedef struct s_stack_node //Un contenedor de datos encerrado en llaves {}. `s_
 }	t_stack_node; //El "nombre acortado", "t_stack_node". `t_` para tipo
 
 //***Manejo de errores
-int				error_syntax(char *str_n); 
+int				error_syntax(char *str_n);
 int				error_duplicate(t_stack_node *a, int n);
 void			free_stack(t_stack_node **stack);
 void			free_errors(t_stack_node **a);

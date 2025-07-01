@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/01 19:01:23 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/01 19:01:24 by jmellado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 //Ver las notas a continuación sobre por qué tuvimos que crear un ft_split "mutable", en lugar de usar nuestra versión de libft
 
 #include "../../inc/push_swap.h"

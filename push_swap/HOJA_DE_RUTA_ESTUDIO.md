@@ -10,14 +10,14 @@
 ### **1.2 Estructura de datos fundamental**
 ```c
 typedef struct s_stack_node {
-    int nbr;                    // El número a ordenar
-    int index;                  // Posición en la pila
-    int push_cost;              // Costo de mover este nodo
-    bool above_median;          // Si está en la mitad superior
-    bool cheapest;              // Si es el más barato de mover
-    struct s_stack_node *target_node;  // Nodo objetivo en pila opuesta
-    struct s_stack_node *next;  // Puntero al siguiente
-    struct s_stack_node *prev;  // Puntero al anterior
+    int nbr;                    // El número a ordenar                     (el numero)
+    int index;                  // Posición en la pila                     (la posicon)
+    int push_cost;              // Costo de mover este nodo                (coste del push)
+    bool above_median;          // Si está en la mitad superior            (mitad bool)
+    bool cheapest;              // Si es el más barato de mover            (mas barato bool)
+    struct s_stack_node *target_node;  // Nodo objetivo en pila opuesta    (nodo de targe pila opuesta)
+    struct s_stack_node *next;  // Puntero al siguiente                    (nodo siguiente)
+    struct s_stack_node *prev;  // Puntero al anterior                     (nodo anterior)
 } t_stack_node;
 ```
 
@@ -96,13 +96,13 @@ static void cost_analysis_a(t_stack_node *a, t_stack_node *b)
 {
     int len_a = stack_len(a);
     int len_b = stack_len(b);
-    
+
     // Costo de rotar nodo A a la cima
     if (a->above_median)
         a->push_cost = a->index;
     else
         a->push_cost = len_a - a->index;
-        
+
     // Añadir costo del nodo objetivo en B
     if (a->target_node->above_median)
         a->push_cost += a->target_node->index;

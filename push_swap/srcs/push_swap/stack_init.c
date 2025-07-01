@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/01 19:01:26 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/01 19:01:27 by jmellado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
 static long	ft_atol(const char *s) //Define una función que convierte cada cadena en un valor long
@@ -6,7 +18,7 @@ static long	ft_atol(const char *s) //Define una función que convierte cada cade
 	int		sign;
 
 	result = 0;
-	sign = 1; 
+	sign = 1;
 	while (*s == ' ' || *s == '\t' || *s == '\n' || \
 			*s == '\r' || *s == '\f' || *s == '\v')
 		s++;
@@ -62,7 +74,7 @@ void	init_stack_a(t_stack_node **a, char **argv) //Define una función que inici
 		if (n > INT_MAX || n < INT_MIN) //Verifica desbordamiento
 			free_errors(a);
 		if (error_duplicate(*a, (int)n))
-			free_errors(a); 
+			free_errors(a);
 		append_node(a, (int)n); //Si no hay errores, agrega el nodo a la lista enlazada tomando un puntero a la pila `a`, crea un nuevo nodo y asigna `n` a ese nuevo nodo
 		i++;
 	}
@@ -100,6 +112,6 @@ void	prep_for_push(t_stack_node **stack,
 				rb(stack, false);
 			else
 				rrb(stack, false);
-		}	
+		}
 	}
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_stacks.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/01 19:00:59 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/01 19:01:00 by jmellado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
 static void	rotate_both(t_stack_node **a,
@@ -26,11 +38,11 @@ static void	move_a_to_b(t_stack_node **a, t_stack_node **b) //Define una funció
 {
 	t_stack_node	*cheapest_node; //Para almacenar el puntero al nodo `a` más barato
 
-	cheapest_node = get_cheapest(*a); 
-	if (cheapest_node->above_median 
+	cheapest_node = get_cheapest(*a);
+	if (cheapest_node->above_median
 		&& cheapest_node->target_node->above_median) //Si tanto el nodo `a` más barato como su nodo objetivo `b` están arriba de la mediana
 		rotate_both(a, b, cheapest_node);
-	else if (!(cheapest_node->above_median) 
+	else if (!(cheapest_node->above_median)
 		&& !(cheapest_node->target_node->above_median)) //Si tanto el nodo `a` más barato como su nodo objetivo `b` están abajo de la mediana
 		rev_rotate_both(a, b, cheapest_node); //`rev_rotate_both` se ejecutará si ninguno de los nodos está en la cima
 	prep_for_push(a, cheapest_node, 'a'); //Asegura que el nodo más barato esté en la cima, listo para empujar
@@ -41,7 +53,7 @@ static void	move_a_to_b(t_stack_node **a, t_stack_node **b) //Define una funció
 static void	move_b_to_a(t_stack_node **a, t_stack_node **b) //Define una función que prepara los nodos objetivo `a` de `b` para empujar todos los nodos `b` de vuelta a la pila `a`
 {
 	prep_for_push(a, (*b)->target_node, 'a'); //Asegura que el nodo objetivo `a` de `b` esté en la cima de la pila
-	pa(a, b, false); 
+	pa(a, b, false);
 }
 
 static void	min_on_top(t_stack_node **a) //Define una función que mueve el número más pequeño a la cima

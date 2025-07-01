@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/01 19:00:56 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/01 19:00:57 by jmellado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
 static void	rotate(t_stack_node **stack) //Define una función que rota el nodo superior de la pila al fondo de la pila
@@ -6,13 +18,13 @@ static void	rotate(t_stack_node **stack) //Define una función que rota el nodo 
 
 	if (!*stack || !(*stack)->next) //Verifica si la pila está vacía, o si hay un nodo
 		return ;
-	last_node = find_last(*stack); 
+	last_node = find_last(*stack);
 	last_node->next = *stack; //Asigna al último nodo, su atributo `next` como el nodo superior, efectivamente estableciendo el nodo superior actual como el último nodo
 	*stack = (*stack)->next; //Asigna al puntero del nodo superior, el nodo después de él (segundo desde la cima)
 	(*stack)->prev = NULL; //Completa el establecimiento del nodo superior actual desconectándolo de su nodo superior anterior
 	last_node->next->prev = last_node; //Reconecta el puntero prev del segundo nodo para que apunte a lo que anteriormente era el último nodo en la pila
 	last_node->next->next = NULL; //Asigna al atributo `next` del último nodo actual, `NULL` efectivamente estableciéndolo como el último nodo actual, y terminando apropiadamente la pila con null
-}		
+}
 
 void	ra(t_stack_node **a, bool print) //Rota el nodo superior `a` al fondo de la pila, e imprime la instrucción
 {
@@ -23,6 +35,7 @@ void	ra(t_stack_node **a, bool print) //Rota el nodo superior `a` al fondo de la
 
 void	rb(t_stack_node **b, bool print) //Rota el nodo superior `b` al fondo de la pila, e imprime la instrucción
 {
+	
 	rotate(b);
 	if (!print)
 		ft_printf("rb\n");

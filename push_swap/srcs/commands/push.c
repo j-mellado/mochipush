@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/01 19:00:47 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/01 19:00:48 by jmellado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
 static void	push(t_stack_node **dst, t_stack_node **src) //Define una función que empuja un nodo superior, de una pila al nodo superior de otra
@@ -26,8 +38,8 @@ static void	push(t_stack_node **dst, t_stack_node **src) //Define una función q
 
 void	pa(t_stack_node **a, t_stack_node **b, bool print) //Empuja encima de `b`, la cima de `a` e imprime la instrucción
 {
-	push(a, b); 
-	if (!print) 
+	push(a, b);
+	if (!print)
 		ft_printf("pa\n");
 }
 

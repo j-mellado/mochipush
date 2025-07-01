@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_a_to_b.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/01 19:01:14 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/01 19:01:15 by jmellado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
 void	current_index(t_stack_node *stack)
@@ -33,7 +45,7 @@ static void	set_target_a(t_stack_node *a, t_stack_node *b)//Encuentra el objetiv
 		current_b = b; //Asigna a `current_b` el nodo `b` actual
 		while (current_b) //Busca iterativamente a través de todos los nodos en la pila `b` hasta que se alcance el final de la pila
 		{
-			if (current_b->nbr < a->nbr 
+			if (current_b->nbr < a->nbr
 				&& current_b->nbr > best_match_index) //Verifica si el nodo `b` es menor que el nodo `a` && mayor que el número más pequeño más cercano hasta ahora
 			{
 				best_match_index = current_b->nbr; //Si es así, actualiza el valor del número más pequeño más cercano hasta ahora
