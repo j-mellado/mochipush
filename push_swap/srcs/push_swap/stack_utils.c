@@ -5,86 +5,86 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 19:01:29 by jmellado          #+#    #+#             */
-/*   Updated: 2025/07/01 19:01:30 by jmellado         ###   ########.fr       */
+/*   Created: 2025/07/04 19:37:14 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/04 20:07:03 by jmellado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-int	stack_len(t_stack_node *stack) //Define una función que calcula y retorna la longitud de una pila
+int	stack_len(t_stack_node *stack)
 {
-	int	count; //Para almacenar el conteo de nodos
+	int	count;
 
 	if (!stack)
 		return (0);
 	count = 0;
-	while (stack) //Hace bucle hasta que se alcance el final de la pila
+	while (stack)
 	{
-		stack = stack->next; //Se mueve al siguiente nodo
+		stack = stack->next;
 		count++;
 	}
 	return (count);
 }
 
-t_stack_node	*find_last(t_stack_node *stack) //Define una función que retorna el puntero al último nodo
+t_stack_node	*find_last(t_stack_node *stack)
 {
 	if (!stack)
 		return (NULL);
-	while (stack->next) //Hace bucle hasta que se alcance el final de la pila
+	while (stack->next)
 		stack = stack->next;
 	return (stack);
 }
 
-bool	stack_sorted(t_stack_node *stack) //Define una función que verifica si la pila está ordenada en orden ascendente
+bool	stack_sorted(t_stack_node *stack)
 {
 	if (!stack)
 		return (1);
-	while (stack->next) //Hace bucle hasta que se alcance el final de la pila
+	while (stack->next)
 	{
-		if (stack->nbr > stack->next->nbr) //Verifica si el valor actual es mayor que el valor del siguiente nodo, indicando que está fuera de orden
+		if (stack->nbr > stack->next->nbr)
 			return (false);
-		stack = stack->next; //Si no, se mueve al siguiente nodo para procesamiento
+		stack = stack->next;
 	}
 	return (true);
 }
 
-t_stack_node	*find_min(t_stack_node *stack) //Define una función que busca en una pila y retorna el nodo con el número más pequeño
+t_stack_node	*find_min(t_stack_node *stack)
 {
-	long			min; //Para almacenar el valor más pequeño hasta ahora
-	t_stack_node	*min_node; //Para almacenar un puntero que apunta al número más pequeño
+	long			min;
+	t_stack_node	*min_node;
 
 	if (!stack)
 		return (NULL);
-	min = LONG_MAX; //Asigna al valor más pequeño hasta ahora, el entero long máximo
-	while (stack) //Hace bucle hasta que se alcance el final de la pila
+	min = LONG_MAX;
+	while (stack)
 	{
-		if (stack->nbr < min) //Verifica si el valor del nodo actual es menor que el más pequeño hasta ahora
+		if (stack->nbr < min)
 		{
-			min = stack->nbr; //Si es así, actualiza el número más pequeño hasta ahora
-			min_node = stack; //Establece el puntero para que apunte al nodo con el número más pequeño hasta ahora
+			min = stack->nbr;
+			min_node = stack;
 		}
-		stack = stack->next; //Se mueve al siguiente nodo para procesamiento
+		stack = stack->next;
 	}
 	return (min_node);
 }
 
-t_stack_node	*find_max(t_stack_node *stack) //Define una función que busca en una pila y retorna el nodo con el número más grande
+t_stack_node	*find_max(t_stack_node *stack)
 {
-	long			max; //Para almacenar el valor más grande hasta ahora
-	t_stack_node	*max_node; //Para almacenar un puntero que apunta al número más grande
+	long			max;
+	t_stack_node	*max_node;
 
 	if (!stack)
 		return (NULL);
-	max = LONG_MIN; //Asigna al valor más grande hasta ahora, el entero long mínimo
-	while (stack) //Hace bucle hasta que se alcance el final de la pila
+	max = LONG_MIN;
+	while (stack)
 	{
-		if (stack->nbr > max) //Verifica si el valor del nodo actual es mayor que el más grande hasta ahora
+		if (stack->nbr > max)
 		{
-			max = stack->nbr; //Si es así, actualiza el número más grande hasta ahora
-			max_node = stack; //Establece el puntero para que apunte al nodo con el número más grande hasta ahora
+			max = stack->nbr;
+			max_node = stack;
 		}
-		stack = stack->next; //Se mueve al siguiente nodo para procesamiento
+		stack = stack->next;
 	}
 	return (max_node);
 }

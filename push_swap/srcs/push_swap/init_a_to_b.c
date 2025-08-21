@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 19:01:14 by jmellado          #+#    #+#             */
-/*   Updated: 2025/07/01 19:01:15 by jmellado         ###   ########.fr       */
+/*   Created: 2025/07/04 19:36:23 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/04 19:36:25 by jmellado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,94 +14,93 @@
 
 void	current_index(t_stack_node *stack)
 {
-	int	i; //Para almacenar el índice del nodo actual
-	int	median; //Para almacenar la posición de la mediana de la pila
+	int	i;
+	int	median;
 
-	i = 0; //El primer índice es `0`
-	if (!stack) //Verifica una pila vacía
+	i = 0;
+	if (!stack)
 		return ;
-	median = stack_len(stack) / 2; //Calcula la mediana dividiendo la longitud de una pila por 2
-	while (stack) //Hace bucle a través de todos los nodos hasta que se alcance el final de la pila
+	median = stack_len(stack) / 2;
+	while (stack)
 	{
-		stack->index = i; //Asigna el valor del índice actual al nodo actual
-		if (i <= median) //Verifica si el nodo actual está arriba o abajo de la mediana
-			stack->above_median = true; //Si está arriba, establece el dato above_median del nodo a true
+		stack->index = i;
+		if (i <= median)
+			stack->above_median = true;
 		else
-			stack->above_median = false; //Si está abajo, establece el dato above_median del nodo a false
-		stack = stack->next; //Se mueve al siguiente nodo para indexar
-		++i; //Incrementa el valor del índice para establecer el siguiente nodo con
+			stack->above_median = false;
+		stack = stack->next;
+		++i;
 	}
 }
 
-static void	set_target_a(t_stack_node *a, t_stack_node *b)//Encuentra el objetivo del nodo `a` en la pila `b`
+static void	set_target_a(t_stack_node *a, t_stack_node *b)
 {
-	t_stack_node	*current_b; //Para almacenar el puntero al nodo actual en la pila `b` e iterar a través de cada nodo siguiente
-	t_stack_node	*target_node; //Para almacenar el puntero al nodo objetivo en la pila `b`
-	long			best_match_index; //En este caso, el mejor índice de coincidencia almacena el valor del "número más pequeño más cercano" hasta ahora
+	t_stack_node	*current_b;
+	t_stack_node	*target_node;
+	long			best_match_index;
 
-	while (a) //Mientras tengamos nodos en la pila `a`
+	while (a)
 	{
-		best_match_index = LONG_MIN; //Asigna el `long` más pequeño como el número más pequeño más cercano hasta ahora
-		current_b = b; //Asigna a `current_b` el nodo `b` actual
-		while (current_b) //Busca iterativamente a través de todos los nodos en la pila `b` hasta que se alcance el final de la pila
+		best_match_index = LONG_MIN;
+		current_b = b;
+		while (current_b)
 		{
-			if (current_b->nbr < a->nbr
-				&& current_b->nbr > best_match_index) //Verifica si el nodo `b` es menor que el nodo `a` && mayor que el número más pequeño más cercano hasta ahora
+			if (current_b->nbr < a->nbr && current_b->nbr > best_match_index)
 			{
-				best_match_index = current_b->nbr; //Si es así, actualiza el valor del número más pequeño más cercano hasta ahora
-				target_node = current_b; //Asigna el nodo `b` actual como el `target_node`
+				best_match_index = current_b->nbr;
+				target_node = current_b;
 			}
-			current_b = current_b->next; //Se mueve al siguiente nodo `b` para comparación, hasta que se encuentre un "número más pequeño más cercano"
+			current_b = current_b->next;
 		}
-		if (best_match_index == LONG_MIN) //Verifica si el LONG_MIN no ha cambiado, significa que no hemos encontrado nada más pequeño
-			a->target_node = find_max(b); //Si es así, encuentra el `nbr` más grande y establece esto como el nodo objetivo
+		if (best_match_index == LONG_MIN)
+			a->target_node = find_max(b);
 		else
-			a->target_node = target_node; //Si no se encuentra un "número más pequeño más cercano", y la mejor coincidencia ha cambiado
-		a = a->next; //Se mueve al siguiente nodo `a` para encontrar su nodo objetivo `b`
+			a->target_node = target_node;
+		a = a->next;
 	}
 }
 
-static void	cost_analysis_a(t_stack_node *a, t_stack_node *b) //Define una función que analiza el costo del nodo `a` junto con su nodo objetivo `b`, que es la suma del número de instrucciones para que ambos nodos roten a la cima de sus pilas
+static void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
 {
-	int	len_a; //Para almacenar la longitud de la pila `a`
-	int	len_b; //Para almacenar la longitud de la pila `b`
+	int	len_a;
+	int	len_b;
 
 	len_a = stack_len(a);
 	len_b = stack_len(b);
-	while (a) //Hace bucle a través de cada nodo hasta que se alcance el final de la pila
+	while (a)
 	{
-		a->push_cost = a->index; //Asigna al costo de empuje del nodo `a` actual, su valor de índice
-		if (!(a->above_median)) //Verifica si el dato above_median es false, significando que está abajo de la mediana
-			a->push_cost = len_a - (a->index); //Si es así, actualiza el costo de empuje del nodo `a` a la longitud de la pila - índice
-		if (a->target_node->above_median) //Verifica si el nodo objetivo `b` del nodo `a` tiene un atributo above median "true", significando que el nodo objetivo `b` está arriba de la mediana
-			a->push_cost += a->target_node->index; //Si es así, actualiza el costo de empuje del nodo `a`, la suma de (su índice actual) + (el índice de su nodo objetivo `b`)
-		else //Si el nodo `a` está efectivamente arriba de la mediana y su nodo objetivo `b` está abajo de la mediana
-			a->push_cost += len_b - (a->target_node->index); //Actualiza el costo de empuje del nodo `a`, la suma de (su índice actual) + (longitud de la pila `b` - el índice de su nodo objetivo `b`)
-		a = a->next; //Se mueve al siguiente nodo `a` para su análisis de costo
+		a->push_cost = a->index;
+		if (!(a->above_median))
+			a->push_cost = len_a - (a->index);
+		if (a->target_node->above_median)
+			a->push_cost += a->target_node->index;
+		else
+			a->push_cost += len_b - (a->target_node->index);
+		a = a->next;
 	}
 }
 
-void	set_cheapest(t_stack_node *stack) //Define una función que establece el atributo `cheapest` de un nodo como `true` o `false`
+void	set_cheapest(t_stack_node *stack)
 {
-	long			cheapest_value; //Para almacenar el valor del nodo más barato hasta ahora
-	t_stack_node	*cheapest_node; //Para almacenar un puntero al nodo más barato hasta ahora
+	long			cheapest_value;
+	t_stack_node	*cheapest_node;
 
-	if (!stack) //Verifica una pila vacía
+	if (!stack)
 		return ;
-	cheapest_value = LONG_MAX; //Asigna el `long` más grande como el valor más barato hasta ahora
-	while (stack) //Hace bucle a través de cada nodo hasta que se alcance el final de la pila, y encontramos el nodo más barato
+	cheapest_value = LONG_MAX;
+	while (stack)
 	{
-		if (stack->push_cost < cheapest_value) //Verifica si el costo de empuje del nodo actual es más barato que el valor más barato hasta ahora
+		if (stack->push_cost < cheapest_value)
 		{
-			cheapest_value = stack->push_cost; //Si es así, actualiza el valor más barato al costo de empuje del nodo actual
-			cheapest_node = stack; //Asigna el nodo actual como el nodo más barato hasta ahora
+			cheapest_value = stack->push_cost;
+			cheapest_node = stack;
 		}
-		stack = stack->next; //Se mueve al siguiente nodo para comparación
+		stack = stack->next;
 	}
-	cheapest_node->cheapest = true; //Después de iterar a través de la pila, si no se encuentra un nodo más barato que el actual, entonces establece el atributo `cheapest` del nodo más barato a `true` en la estructura de datos
+	cheapest_node->cheapest = true;
 }
 
-void	init_nodes_a(t_stack_node *a, t_stack_node *b) //Define una función que combina todas las funciones necesarias para preparar la pila `a`, lista para nuestro empuje y ordenamiento. Estas funciones establecen los datos dentro de la estructura del nodo
+void	init_nodes_a(t_stack_node *a, t_stack_node *b)
 {
 	current_index(a);
 	current_index(b);

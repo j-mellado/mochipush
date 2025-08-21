@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 19:04:03 by jmellado          #+#    #+#             */
-/*   Updated: 2025/07/01 19:04:04 by jmellado         ###   ########.fr       */
+/*   Created: 2025/07/04 19:50:12 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/04 19:50:14 by jmellado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
 
-static	void	putnbr_fd(long int nb, int fd)
+static void	putnbr_fd(long int nb, int fd)
 {
 	if (nb < 0)
 	{

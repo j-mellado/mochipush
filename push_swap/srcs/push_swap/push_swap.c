@@ -5,34 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 19:01:20 by jmellado          #+#    #+#             */
-/*   Updated: 2025/07/01 19:01:21 by jmellado         ###   ########.fr       */
+/*   Created: 2025/07/04 19:36:40 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/04 20:00:38 by jmellado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-int	main(int argc, char **argv) //Define un programa que toma una entrada aleatoria de números y los ordena en orden ascendente
+int	main(int argc, char **argv)
 {
-	t_stack_node	*a; //Para almacenar un puntero a la pila `a`
-	t_stack_node	*b; //Para almacenar un puntero a la pila `b`
+	t_stack_node	*a;
+	t_stack_node	*b;
 
-	a = NULL; //Establece ambos punteros a NULL para evitar comportamiento indefinido
+	a = NULL;
 	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0])) //Verifica conteos de argumentos incorrectos o si el 2do argumento es `0`
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
-	else if (argc == 2) //Verifica si el conteo de argumentos es 2 y el 2do no está vacío, esto implica una cadena
-		argv = split(argv[1], ' '); //Llama a `split()` para extraer cada subcadena
-	init_stack_a(&a, argv + 1); //Inicia la pila `a`, que también maneja errores
-	if (!stack_sorted(a)) //Verifica si la pila no está ordenada
+	else if (argc == 2)
+		argv = split(argv[1], ' ');
+	init_stack_a(&a, argv + 1);
+	if (!stack_sorted(a))
 	{
-		if (stack_len(a) == 2) //Si no, y hay dos números, intercambia los primeros dos nodos
+		if (stack_len(a) == 2)
 			sa(&a, false);
-		else if (stack_len(a) == 3) //Si no, y hay tres números, llama al algoritmo de ordenamiento de tres
+		else if (stack_len(a) == 3)
 			sort_three(&a);
 		else
-			sort_stacks(&a, &b); //Si no, y hay más de tres números, llama al algoritmo de ordenamiento de pilas
+			sort_stacks(&a, &b);
 	}
-	free_stack(&a); //Limpia la pila
+	free_stack(&a);
 	return (0);
 }

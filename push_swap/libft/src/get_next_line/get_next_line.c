@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmellado <jmellado@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 19:05:22 by jmellado          #+#    #+#             */
-/*   Updated: 2025/07/01 19:05:23 by jmellado         ###   ########.fr       */
+/*   Created: 2025/07/04 19:52:39 by jmellado          #+#    #+#             */
+/*   Updated: 2025/07/04 19:55:49 by jmellado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ char	*read_from_fd(int fd)
 
 char	*get_next_line_helper(char **stash, int fd)
 {
-	char		*tmp_stash;
-	char		*line_read;
-	char		*line;
+	char	*tmp_stash;
+	char	*line_read;
+	char	*line;
 
 	line = process_line(stash);
 	if (line)
